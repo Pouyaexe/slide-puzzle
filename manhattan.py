@@ -2,7 +2,7 @@
 # using the A* search algorithm and the Manhattan distance heuristic.
 # Your output should be a list of lists, where each inner list is a state of the puzzle.
 # We will use hip in this example, but you can use any other heuristic function. 
-
+import heapq # for priority queue implementation we use
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
@@ -38,7 +38,7 @@ def manhattan_distance(puzzle):
                 distance += abs(i - (puzzle[i][j] - 1) // 3) + abs(j - (puzzle[i][j] - 1) % 3)
     return distance
 
-import heapq # for priority queue implementation we use
+
 
 def a_star_search(puzzle, goal):
     "Using heapq to implement priority queue for A* search"
@@ -73,7 +73,14 @@ def print_puzzle(puzzle, goal):
 # print_puzzle(puzzle, goal)
 
 # let's try a harder puzzle
-puzzle = [[1, 2, 3], [4, 6, 0], [7, 5, 8]]
-goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+# puzzle = [[1, 2, 3], [4, 6, 0], [7, 5, 8]]
+# goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+# print_puzzle(puzzle, goal)
+
+# let's try a 4*4 puzzle
+puzzle = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 0, 15]]
+goal = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]]
 
 print_puzzle(puzzle, goal)
+#
