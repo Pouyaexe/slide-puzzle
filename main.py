@@ -49,16 +49,21 @@ def next_states(puzzle, blank, goal):
     return states, move_num
 
 # A* search function
+from copy import deepcopy
+
+# A* search function
 def a_star(puzzle, goal):
+    # Create a deep copy of the goal state
+    goal_state = deepcopy(goal)
     # Initialize the heap with the starting state
-    heap = [(manhattan_distance(puzzle, goal), puzzle, [])]
+    heap = [(manhattan_distance(puzzle, goal_state), puzzle, [])]
     # Create a set to keep track of the visited states
     visited = set()
     while heap:
         # Pop the state with the lowest f(n) from the heap
         _, current_puzzle, moves = heapq.heappop(heap)
         # If the current state is the goal state, return the moves
-        if current_puzzle == goal:
+        if current_puzzle == goal_state:
             return moves
         # If the current state has already been visited, skip it
         if str(current_puzzle) in visited:
@@ -71,7 +76,7 @@ def a_star(puzzle, goal):
         # Find the coordinates of the blank space
         blank = find_blank(current_puzzle)
         # Generate the possible next states and move tile
-        next_states_list, move_num = next_states(current_puzzle, blank, goal)
+        next_states_list, move_num = next_states(current_puzzle, blank, goal_state)
         for next_puzzle, move, blank_num in next_states_list:
             # Append the move to the list of moves
             next_moves = moves + [move]
@@ -87,7 +92,7 @@ def a_star(puzzle, goal):
                 elif move == 'right':
                     print("→")
             # Calculate the heuristic value
-            h = manhattan_distance(next_puzzle, goal)
+            h = manhattan_distance(next_puzzle, goal_state)
             # Add the next state to the heap with f(n) = g(n) + h(n)
             heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
 
