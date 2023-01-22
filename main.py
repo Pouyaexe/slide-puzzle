@@ -8,8 +8,7 @@ goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
 def print_puzzle(puzzle):
     for row in puzzle:
-        for element in row:
-            print(element, end = " ")
+        print(row)
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
