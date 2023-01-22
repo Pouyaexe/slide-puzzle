@@ -14,7 +14,7 @@ def get_zero(puzzle):
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] == 0:
-                return [i,j]
+                return [i, j]
 
 def get_neighbors(puzzle):
     neighbors = []
