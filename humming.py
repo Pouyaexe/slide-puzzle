@@ -29,7 +29,6 @@ def move(puzzle, neighbor):
     return new_puzzle
 
 def hammingDistance( puzle, goal):
-
     ans = 0
     for i in range(len(puzle)):
         for j in range(len(puzle[0])):
