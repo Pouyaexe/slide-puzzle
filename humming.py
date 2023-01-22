@@ -28,16 +28,14 @@ def move(puzzle, neighbor):
     new_puzzle[neighbor[0]][neighbor[1]] = 0
     return new_puzzle
 
-def hammingDistance( x, y):
+def hammingDistance( puzle, goal):
 
     ans = 0
-    for i in range(31,-1,-1):
-        b1= x>>i&1
-        b2 = y>>i&1
-        ans+= not(b1==b2)
-        #if not(b1==b2):
-        # print(b1,b2,i)
-    return ans
+    for i in range(len(puzle)):
+        for j in range(len(puzle[0])):
+            if puzle[i][j] != goal[i][j]:
+                ans += 1
+    return ans           
 
 def a_star_search(puzzle, goal):
     frontier = []
