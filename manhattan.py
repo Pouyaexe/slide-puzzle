@@ -72,4 +72,8 @@ goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
     
 print_puzzle(puzzle, goal)
 
-puzzle
+# let's try a harder puzzle
+puzzle = [[1, 2, 3], [4, 6, 0], [7, 5, 8]]
+goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+print_puzzle(puzzle, goal)
