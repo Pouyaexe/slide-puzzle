@@ -6,7 +6,9 @@ goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 # using the A* search algorithm and the Manhattan distance heuristic.
 # Your output should be a list of lists, where each inner list is a state of the puzzle. 
 
-
+def print_puzzle(puzzle):
+    for row in puzzle:
+        print(row)
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
