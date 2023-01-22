@@ -1,5 +1,5 @@
 
-puzzle =  [[1, 2, 3], [4, 5, 6], [7, 0, 8]]
+puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
 # Write a script that prints out the steps required to solve the puzzle
