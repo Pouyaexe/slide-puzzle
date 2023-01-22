@@ -1,6 +1,3 @@
-# Write a script that prints out the steps required to solve the puzzle
-# using the A* search algorithm and the Humming distance heuristic.
-# Your output should be a list of lists, where each inner list is a state of the puzzle. 
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
