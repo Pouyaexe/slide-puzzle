@@ -1,14 +1,5 @@
 import heapq
 
-# Function to calculate the Hamming distance
-def hamming_distance(puzzle, goal):
-    distance = 0
-    for i in range(len(puzzle)):
-        for j in range(len(puzzle[0])):
-            if puzzle[i][j] != goal[i][j]:
-                distance += 1
-    return distance
-
 # Function to calculate the Manhattan distance
 def manhattan_distance(puzzle, goal):
     distance = 0
@@ -51,12 +42,12 @@ def next_states(puzzle, blank):
 # A* search function
 def a_star(puzzle, goal):
     # Initialize the heap with the starting state
-    heap = [(hamming_distance(puzzle, goal), manhattan_distance(puzzle, goal), puzzle, [])]
+    heap = [(manhattan_distance(puzzle, goal), puzzle, [])]
     # Create a set to keep track of the visited states
     visited = set()
     while heap:
         # Pop the state with the lowest f(n) from the heap
-        _, _, current_puzzle, moves = heapq.heappop(heap)
+        _, current_puzzle, moves = heapq.heappop(heap)
         # If the current state is the goal state, return the moves
         if current_puzzle == goal:
             return moves
@@ -71,12 +62,16 @@ def a_star(puzzle, goal):
         for next_puzzle, move in next_states(current_puzzle, blank):
             # Append the move to the list of moves
             next_moves = moves + [move]
-            # Calculate the heuristic values
-            h1 = hamming_distance(next_puzzle, goal)
-            h2 = manhattan_distance(next_puzzle, goal)
+            # Calculate the heuristic value
+            h = manhattan_distance(next_puzzle, goal)
             # Add the next state to the heap with f(n) = g(n) + h(n)
-            heapq.heappush(heap, (len(next_moves) + h1 + h2, h1, next_puzzle, next_moves))
+            heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
 
+# Example usage
+puzzle = [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
+goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+print(a_star(puzzle, goal))
+        
 # Example usage
 puzzle = [[1, 2, 3],
           [4, 0, 6], 
