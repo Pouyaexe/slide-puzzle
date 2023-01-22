@@ -25,18 +25,6 @@ def get_neighbors(puzzle):
         neighbors.append([zero[0], zero[1] + 1])
     return neighbors
 
-def get_neighbors(puzzle):
-    neighbors = []
-    zero = get_zero(puzzle)
-    if zero[0] > 0:
-        neighbors.append([zero[0] - 1, zero[1]])
-    if zero[0] < 2:
-        neighbors.append([zero[0] + 1, zero[1]])
-    if zero[1] > 0:
-        neighbors.append([zero[0], zero[1] - 1])
-    if zero[1] < 2:
-        neighbors.append([zero[0], zero[1] + 1])
-    return neighbors
 
 def move(puzzle, neighbor):
     new_puzzle = [row[:] for row in puzzle]
