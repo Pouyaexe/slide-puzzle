@@ -47,6 +47,7 @@ def a_star_search(puzzle, goal):
     explored = []
     while len(frontier) > 0:
         state = heapq.heappop(frontier)[1]
+        print("Expanding:", state)
         if state == goal:
             return explored
         explored.append(state)
