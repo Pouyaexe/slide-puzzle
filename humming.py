@@ -60,7 +60,7 @@ def print_puzzle(puzzle, goal):
         print("Step:", puzzles.index(puzzle))
         for row in puzzle:
             print(row)
-        print("_____")
+        print("_________")
 
 puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
