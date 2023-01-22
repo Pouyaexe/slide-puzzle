@@ -42,7 +42,7 @@ def a_star_search(puzzle, goal):
     frontier.append(puzzle)
     explored = []
     while len(frontier) > 0:
-        frontier.sort(key = lambda x: humming_distance(x))
+        frontier.sort(key = lambda x: hammingDistance(x, goal))
         current = frontier.pop(0)
         explored.append(current)
         if current == goal:
@@ -56,7 +56,7 @@ def a_star_search(puzzle, goal):
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
-    print("Humming distance:", humming_distance(puzzle))
+    print("Humming distance:", hammingDistance(puzzle, goal))
     for puzzle in puzzles:
         print("Step:", puzzles.index(puzzle))
         for row in puzzle:
