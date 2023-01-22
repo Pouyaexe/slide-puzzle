@@ -56,7 +56,7 @@ def a_star_search(puzzle, goal):
                 frontier.append(new_puzzle)
                 heapq.heapify(frontier) 
                 frontier.sort(key=lambda x: manhattan_distance(x))
-        return explored
+    return explored
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
