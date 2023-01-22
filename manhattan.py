@@ -1,6 +1,7 @@
 # Write a script that prints out the steps required to solve the puzzle
 # using the A* search algorithm and the Manhattan distance heuristic.
-# Your output should be a list of lists, where each inner list is a state of the puzzle. 
+# Your output should be a list of lists, where each inner list is a state of the puzzle.
+# We will use hip in this example, but you can use any other heuristic function. 
 
 
 def get_zero(puzzle):
