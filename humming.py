@@ -56,6 +56,7 @@ def a_star_search(puzzle, goal):
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
+    print("Humming distance:", humming_distance(puzzle))
     for puzzle in puzzles:
         print("Step:", puzzles.index(puzzle))
         for row in puzzle:
