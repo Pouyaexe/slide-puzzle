@@ -1,4 +1,5 @@
 import heapq
+from copy import deepcopy
 
 # Function to calculate the Manhattan distance
 def manhattan_distance(puzzle, goal):
