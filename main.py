@@ -62,7 +62,6 @@ def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
     for puzzle in puzzles:
         print("Step:", puzzles.index(puzzle))
-        print("Move tile", puzzle[get_zero(puzzle)[0]][get_zero(puzzle)[1]],":")
         for row in puzzle:
             print(row)
         print("_____")
