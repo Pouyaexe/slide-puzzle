@@ -3,6 +3,7 @@
 # Your output should be a list of lists, where each inner list is a state of the puzzle. 
 
 def get_zero(puzzle):
+    """Return the position of the zero in the puzzle"""
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] == 0:
