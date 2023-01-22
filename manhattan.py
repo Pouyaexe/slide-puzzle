@@ -66,9 +66,6 @@ def print_puzzle(puzzle, goal):
             print(row)
         print("_____")
 
-def print_puzzle(puzzle, goal):
-    for i in range(len(puzzle)):
-        print(puzzle[i], " ", goal[i])
 
 puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
