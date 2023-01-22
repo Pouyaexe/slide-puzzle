@@ -72,12 +72,15 @@ def a_star_search(puzzle, goal):
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
-    print("Humming distance:", hammingDistance(puzzle, goal))
-    for puzzle in puzzles:
-        print("Step:", puzzles.index(puzzle))
-        for row in puzzle:
-            print(row)
-        print("_________") 
+    print("Manhattan distance:", manhattan_distance(puzzle))
+    # if size=len(puzzle)^2 > 9, we need to adjust the width of the output
+    width = len(str(len(puzzle) ** 2))
+    for i in range(len(puzzles)):
+        print("Step", i)
+        for j in range(len(puzzles[i])):
+            print(" ".join([str(x).rjust(width) for x in puzzles[i][j]]))
+        print("_"*len(" ".join([str(x).rjust(width) for x in puzzles[i][j]])))
+        print()
 
 puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
