@@ -47,7 +47,7 @@ def a_star_search(puzzle, goal):
     explored = []
     while len(frontier) > 0:
         state = heapq.heappop(frontier)[1]
-        print("Expanding:", state)
+        # print("Expanding:", state)
         if state == goal:
             return explored + [state] # + state to include the goal state
         explored.append(state)
@@ -67,10 +67,10 @@ def print_puzzle(puzzle, goal):
         print("_____")
 
 
-puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
-goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+# puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
+# goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
     
-print_puzzle(puzzle, goal)
+# print_puzzle(puzzle, goal)
 
 # let's try a harder puzzle
 puzzle = [[1, 2, 3], [4, 6, 0], [7, 5, 8]]
