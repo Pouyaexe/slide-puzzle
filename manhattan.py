@@ -38,24 +38,22 @@ def manhattan_distance(puzzle):
                 distance += abs(i - (puzzle[i][j] - 1) // 3) + abs(j - (puzzle[i][j] - 1) % 3)
     return distance
 
-import heapq # for priority queue implementation we use heapq module which is a min heap
+import heapq # for priority queue implementation we use
 
 def a_star_search(puzzle, goal):
+    "Using heapq to implement priority queue for A* search"
     frontier = []
-    frontier.append(puzzle)
+    heapq.heappush(frontier, (manhattan_distance(puzzle), puzzle))
     explored = []
     while len(frontier) > 0:
-        current = frontier.pop(0)
-        if current == goal:
+        state = heapq.heappop(frontier)[1]
+        if state == goal:
             return explored
-        explored.append(current)
-        neighbors = get_neighbors(current)
-        for neighbor in neighbors:
-            new_puzzle = move(current, neighbor)
-            if new_puzzle not in explored and new_puzzle not in frontier:
-                frontier.append(new_puzzle)
-                heapq.heapify(frontier) 
-                frontier.sort(key=lambda x: manhattan_distance(x))
+        explored.append(state)
+        for neighbor in get_neighbors(state):
+            new_state = move(state, neighbor)
+            if new_state not in explored and new_state not in [x[1] for x in frontier]:
+                heapq.heappush(frontier, (manhattan_distance(new_state), new_state))
     return explored
 
 def print_puzzle(puzzle, goal):
