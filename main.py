@@ -23,20 +23,24 @@ def next_states(puzzle, blank):
     states = []
     if i > 0:
         new_puzzle = [row[:] for row in puzzle]
+        blank_num = new_puzzle[i-1][j]
         new_puzzle[i][j], new_puzzle[i-1][j] = new_puzzle[i-1][j], new_puzzle[i][j]
-        states.append((new_puzzle, 'up'))
+        states.append((new_puzzle, 'up', blank_num))
     if i < len(puzzle) - 1:
         new_puzzle = [row[:] for row in puzzle]
+        blank_num = new_puzzle[i+1][j]
         new_puzzle[i][j], new_puzzle[i+1][j] = new_puzzle[i+1][j], new_puzzle[i][j]
-        states.append((new_puzzle, 'down'))
+        states.append((new_puzzle, 'down', blank_num))
     if j > 0:
         new_puzzle = [row[:] for row in puzzle]
+        blank_num = new_puzzle[i][j-1]
         new_puzzle[i][j], new_puzzle[i][j-1] = new_puzzle[i][j-1], new_puzzle[i][j]
-        states.append((new_puzzle, 'left'))
+        states.append((new_puzzle, 'left', blank_num))
     if j < len(puzzle[0]) - 1:
         new_puzzle = [row[:] for row in puzzle]
+        blank_num = new_puzzle[i][j+1]
         new_puzzle[i][j], new_puzzle[i][j+1] = new_puzzle[i][j+1], new_puzzle[i][j]
-        states.append((new_puzzle, 'right'))
+        states.append((new_puzzle, 'right', blank_num))
     return states
 
 # A* search function
@@ -62,23 +66,10 @@ def a_star(puzzle, goal):
         # Find the coordinates of the blank space
         blank = find_blank(current_puzzle)
         # Generate the possible next states
-        for next_puzzle, move in next_states(current_puzzle, blank):
+        for next_puzzle, move, blank_num in next_states(current_puzzle, blank):
             # Append the move to the list of moves
             next_moves = moves + [move]
-            # Calculate the heuristic value
-            h = manhattan_distance(next_puzzle, goal)
-            # Print the arrow for the next move
-            if move == 'up':
-                print("↑")
-            elif move == 'down':
-                print("↓")
-            elif move == 'left':
-                print("←")
-            elif move == 'right':
-                print("→")
-            # Add the next state to the heap with f(n) = g(n) + h(n)
-            heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
-
+            # Print the tile number and arrow for the next move
         
 # Example usage
 puzzle = [[1, 2, 3],
