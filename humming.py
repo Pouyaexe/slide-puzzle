@@ -10,6 +10,22 @@ def get_zero(puzzle):
                 return [i, j]
 
 def get_neighbors(puzzle):
+    # This function returns a list of the neighbors of the zero tile in the puzzle.
+    # The neighbors are tiles that can be swapped with the zero tile.
+    # The neighbors are returned as a list of lists, each of which contains the row and column of the neighbor.
+    neighbors = []
+    zero = get_zero(puzzle)
+    if zero[0] > 0:
+        neighbors.append([zero[0] - 1, zero[1]])
+    if zero[0] < 2:
+        neighbors.append([zero[0] + 1, zero[1]])
+    if zero[1] > 0:
+        neighbors.append([zero[0], zero[1] - 1])
+    if zero[1] < 2:
+        neighbors.append([zero[0], zero[1] + 1])
+    return neighbors
+
+def get_neighbors(puzzle):
     neighbors = []
     zero = get_zero(puzzle)
     if zero[0] > 0:
@@ -61,7 +77,7 @@ def print_puzzle(puzzle, goal):
         print("Step:", puzzles.index(puzzle))
         for row in puzzle:
             print(row)
-        print("_________")
+        print("_________") 
 
 puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
