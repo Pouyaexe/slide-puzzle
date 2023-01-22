@@ -60,5 +60,10 @@ def a_star_search(puzzle, goal):
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
+    for puzzle in puzzles:
+        for row in puzzle:
+            print(row)
+        print("_____")
     
-print(a_star_search(puzzle, goal))
+    
+print_puzzle(puzzle, goal)
