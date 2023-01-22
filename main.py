@@ -50,7 +50,45 @@ def a_star(puzzle, goal):
     visited = set()
     while heap:
         # Pop the state with the lowest f(n) from the heap
-        _
+        _, current_puzzle, moves = heapq.heappop(heap)
+        # If the current state is the goal state, return the moves
+        if current_puzzle == goal:
+            return moves
+        # If the current state has already been visited, skip it
+        if str(current_puzzle) in visited:
+            continue
+        # Mark the current state as visited
+        visited.add(str(current_puzzle))
+        # Print the current state of the puzzle
+        for row in current_puzzle:
+            print(row)
+        # Find the coordinates of the blank space
+        blank = find_blank(current_puzzle)
+        # Generate the possible next states and move tile
+        next_states_list, move_num = next_states(current_puzzle, blank, goal)
+        for next_puzzle, move, blank_num in next_states_list:
+            # Append the move to the list of moves
+            next_moves = moves + [move]
+            # Print the tile number and arrow for the next move
+            if blank_num == move_num:
+                print(f"{move_num}-{move}")
+                if move == 'up':
+                    print("↑")
+                elif move == 'down':
+                    print("↓")
+                elif move == 'left':
+                    print("←")
+                elif move == 'right':
+                    print("→")
+            # Calculate the heuristic value
+            h = manhattan_distance(next_puzzle, goal)
+            # Add the next state to the heap with f(n) = g(n) + h(n)
+            heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
+
+# Example usage
+puzzle = [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
+goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+print(a_star(puzzle, goal))
 
 # Example usage
 puzzle = [[1, 2, 3],
