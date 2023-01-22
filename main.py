@@ -61,6 +61,7 @@ def a_star_search(puzzle, goal):
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
     for puzzle in puzzles:
+        print("Step:", puzzles.index(puzzle))
         for row in puzzle:
             print(row)
         print("_____")
