@@ -7,10 +7,10 @@ goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 # Your output should be a list of lists, where each inner list is a state of the puzzle. 
 
 def print_puzzle(puzzle):
-    # print the puzzle in a nice format, each row on a new line and each state separated by ----
-    for state in puzzle:
-        print(state)
-        print("----")
+    # Normal output is [[[1, 2, 3], [4, 0, 6], [7, 5, 8]], [[1, 2, 3], [4, 5, 6], [7, 0, 8]], [[1, 2, 3], [4, 5, 6], [7, 8, 0]]]
+    # This function prints the puzzle in a more readable format
+    for row in puzzle:
+        print(row)
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
