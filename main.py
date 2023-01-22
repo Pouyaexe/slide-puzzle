@@ -90,7 +90,6 @@ def a_star(puzzle, goal):
             # Add the next state to the heap with f(n) = g(n) + h(n)
             heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
 
-print(a_star(puzzle, goal))
 
 # Example usage
 puzzle = [[1, 2, 3],
