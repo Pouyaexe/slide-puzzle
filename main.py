@@ -4,17 +4,11 @@ goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
 # Write a script that prints out the steps required to solve the puzzle
 # using the A* search algorithm and the Manhattan distance heuristic.
-# Your output should be a list of lists, where each inner list is a state of the puzzle.
-# we want to print each row of the puzzle on a new line, also each state should be separated by ------------------ for this we can use the print_puzzle function
-# so the new puzzle will be printed like this:
-# 1 2 3
-# 4 0 6
-# 7 5 8
- 
+# Your output should be a list of lists, where each inner list is a state of the puzzle. 
 
 def print_puzzle(puzzle):
-    for row in puzzle:
-        print(row)
+    # print the puzzle in a nice format, each row on a new line and each state separated by ----
+    print(puzzle)
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
