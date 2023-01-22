@@ -45,6 +45,10 @@ def next_states(puzzle, blank, goal):
             if puzzle[i][j] != goal[i][j]:
                 move_num = puzzle[i][j]
                 break
+    # log the states
+    print("States from next_states:")
+    for state in states:
+        print(state)
     return states, move_num
 
 # A* search function
