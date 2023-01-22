@@ -3,25 +3,21 @@
 # Your output should be a list of lists, where each inner list is a state of the puzzle. 
 
 def get_zero(puzzle):
-    """Return the position of the zero in the puzzle"""
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] == 0:
                 return [i, j]
 
 def get_neighbors(puzzle):
-    # This function returns a list of the neighbors of the zero tile in the puzzle.
-    # The neighbors are tiles that can be swapped with the zero tile.
-    # The neighbors are returned as a list of lists, each of which contains the row and column of the neighbor.
     neighbors = []
     zero = get_zero(puzzle)
     if zero[0] > 0:
         neighbors.append([zero[0] - 1, zero[1]])
-    if zero[0] < 2:
+    if zero[0] < len(puzzle) - 1:
         neighbors.append([zero[0] + 1, zero[1]])
     if zero[1] > 0:
         neighbors.append([zero[0], zero[1] - 1])
-    if zero[1] < 2:
+    if zero[1] < len(puzzle[0]) - 1:
         neighbors.append([zero[0], zero[1] + 1])
     return neighbors
 
