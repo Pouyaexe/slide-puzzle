@@ -8,7 +8,7 @@ goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
 def print_puzzle(puzzle):
     # print the puzzle in a nice format, each row on a new line and each state separated by ----
-    print(puzzle)
+    print(puzzle[0])
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
