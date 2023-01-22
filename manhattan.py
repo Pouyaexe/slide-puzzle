@@ -2,6 +2,7 @@
 # using the A* search algorithm and the Manhattan distance heuristic.
 # Your output should be a list of lists, where each inner list is a state of the puzzle.
 # We will use hip in this example, but you can use any other heuristic function. 
+
 import heapq # for priority queue implementation we use
 
 def get_zero(puzzle):
@@ -15,11 +16,11 @@ def get_neighbors(puzzle):
     zero = get_zero(puzzle)
     if zero[0] > 0:
         neighbors.append([zero[0] - 1, zero[1]])
-    if zero[0] < 2:
+    if zero[0] < len(puzzle) - 1:
         neighbors.append([zero[0] + 1, zero[1]])
     if zero[1] > 0:
         neighbors.append([zero[0], zero[1] - 1])
-    if zero[1] < 2:
+    if zero[1] < len(puzzle[0]) - 1:
         neighbors.append([zero[0], zero[1] + 1])
     return neighbors
 
@@ -35,7 +36,7 @@ def manhattan_distance(puzzle):
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] != 0:
-                distance += abs(i - (puzzle[i][j] - 1) // 3) + abs(j - (puzzle[i][j] - 1) % 3)
+                distance += abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(j - (puzzle[i][j] - 1) % len(puzzle[0]))
     return distance
 
 
@@ -65,7 +66,7 @@ def print_puzzle(puzzle, goal):
         for row in puzzle:
             print(row)
         print("_____")
-
+        
 
 # puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
 # goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
