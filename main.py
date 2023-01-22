@@ -10,6 +10,11 @@ def manhattan_distance(puzzle, goal):
                 distance += abs(i - x) + abs(j - y)
     return distance
 
+def find_blank(puzzle):
+    for i in range(len(puzzle)):
+        for j in range(len(puzzle[0])):
+            if puzzle[i][j] == 0:
+                return (i, j)
 # Function to generate the possible next states
 def next_states(puzzle, blank, goal):
     i, j = blank
