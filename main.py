@@ -1,108 +1,181 @@
-import heapq
-from copy import deepcopy
+class PuzzleNode:
+   def __init__(self, n, state):
+       self.n = n
+       self.tablesize = n**2
+       self.goal = []
+       self.state = state
 
-# Function to calculate the Manhattan distance
-def manhattan_distance(puzzle, goal):
-    distance = 0
-    for i in range(len(puzzle)):
-        for j in range(len(puzzle[0])):
-            if puzzle[i][j] != 0:
-                x, y = divmod(puzzle[i][j] - 1, len(puzzle[0]))
-                distance += abs(i - x) + abs(j - y)
-    return distance
+   def __str__(self, state):
+   #Visualizes the table
+       t = " | "
+       s = " ----"
+       print (s * (self.n))
+       for i in self.state:
+           counter , u = 0, t
+           while counter < len(i):
+               u += str(i[counter]) + t
+               counter += 1
+           print (u)
+           print (s * (self.n))
 
-def find_blank(puzzle):
-    for i in range(len(puzzle)):
-        for j in range(len(puzzle[0])):
-            if puzzle[i][j] == 0:
-                return (i, j)
-# Function to generate the possible next states
-def next_states(puzzle, blank, goal):
-    i, j = blank
-    states = []
-    if i > 0:
-        new_puzzle = [row[:] for row in puzzle]
-        blank_num = new_puzzle[i-1][j]
-        new_puzzle[i][j], new_puzzle[i-1][j] = new_puzzle[i-1][j], new_puzzle[i][j]
-        states.append((new_puzzle, 'up', blank_num))
-    if i < len(puzzle) - 1:
-        new_puzzle = [row[:] for row in puzzle]
-        blank_num = new_puzzle[i+1][j]
-        new_puzzle[i][j], new_puzzle[i+1][j] = new_puzzle[i+1][j], new_puzzle[i][j]
-        states.append((new_puzzle, 'down', blank_num))
-    if j > 0:
-        new_puzzle = [row[:] for row in puzzle]
-        blank_num = new_puzzle[i][j-1]
-        new_puzzle[i][j], new_puzzle[i][j-1] = new_puzzle[i][j-1], new_puzzle[i][j]
-        states.append((new_puzzle, 'left', blank_num))
-    if j < len(puzzle[0]) - 1:
-        new_puzzle = [row[:] for row in puzzle]
-        blank_num = new_puzzle[i][j+1]
-        new_puzzle[i][j], new_puzzle[i][j+1] = new_puzzle[i][j+1], new_puzzle[i][j]
-        states.append((new_puzzle, 'right', blank_num))
-    # Find the tile that is going to be moved
-    for i in range(len(puzzle)):
-        for j in range(len(puzzle[0])):
-            if puzzle[i][j] != goal[i][j]:
-                move_num = puzzle[i][j]
-                break
-    return states, move_num
+def place_heuristic(state):
+   #A heuristic function which is based on the number of tiles in their misplaced place.
+   #It first checks the type of data which the input comes in(string or list of list), and then works with it accordingly.
+   if type(state) == str:
+       state = eval(state)
+   elif type(state) == list:
+       pass
 
-# A* search function
-from copy import deepcopy
+   # We know an element is misplaced when the index of that element is not equal to that element
+   flat_statelist = [item for sublist in state for item in sublist]
+   misplacedcounter = 0
+   for element in flat_statelist:
+       if flat_statelist.index(element) != element:
+           misplacedcounter += 1
+   return misplacedcounter
 
-# A* search function
-def a_star(puzzle, goal):
-    # Create a deep copy of the goal state
-    goal_state = deepcopy(goal)
-    # Initialize the heap with the starting state
-    heap = [(manhattan_distance(puzzle, goal_state), puzzle, [])]
-    # Create a set to keep track of the visited states
-    visited = set()
-    while heap:
-        # Pop the state with the lowest f(n) from the heap
-        _, current_puzzle, moves = heapq.heappop(heap)
-        # If the current state is the goal state, return the moves
-        if current_puzzle == goal_state:
-            return moves
-        # If the current state has already been visited, skip it
-        if str(current_puzzle) in visited:
-            continue
-        # Mark the current state as visited
-        visited.add(str(current_puzzle))
-        # Print the current state of the puzzle
-        for row in current_puzzle:
-            print(row)
-        # Find the coordinates of the blank space
-        blank = find_blank(current_puzzle)
-        # Generate the possible next states and move tile
-        next_states_list, move_num = next_states(current_puzzle, blank, goal_state)
-        for next_puzzle, move, blank_num in next_states_list:
-            # Append the move to the list of moves
-            next_moves = moves + [move]
-            # Print the tile number and arrow for the next move
-            if blank_num == move_num:
-                print(f"{move_num}-{move}")
-                if move == 'up':
-                    print("↑")
-                elif move == 'down':
-                    print("↓")
-                elif move == 'left':
-                    print("←")
-                elif move == 'right':
-                    print("→")
-            # Calculate the heuristic value
-            h = manhattan_distance(next_puzzle, goal_state)
-            # Add the next state to the heap with f(n) = g(n) + h(n)
-            heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
+def Manhattan_heuristic(state):
+   #A heuristic function which is based on the manhattan distance of a tile from it's ideal position
+   #Again, it first checks the type of data which the input comes in(string or list of list), and then works with it accordingly.
+   if type(state) == str:
+       state = eval(state)
+   elif type(state) == list:
+       pass
+   flat_statelist = [item for sublist in state for item in sublist]
+   flat_goallist = range(0, len(flat_statelist))
+   mandistance = 0
+
+   #We use it's modular arthmetic to get it's x and y coordinates in the grid. The manhattan distance is the sum of all these x
+   #and y coordinates for each of the tiles
+   for element in flat_statelist:
+       distance = abs(flat_goallist.index(element) - flat_statelist.index(element))
+       xcoord, ycoord = distance//len(state[0]), distance%len(state[0])
+       mandistance += xcoord + ycoord
+   return mandistance
+
+def myheuristic(state):
+   #This is my attempt at the linear conflict heuristic function. It is a type of heuristic that incorporates the manhattan distance and increases it based
+   #on whether or not a condition is satisfied. It's better than the Manhattan heuristic in principle because it incorporates it in it's design, and thus can't be
+   #worse than it.
+   #Again, it first checks the type of data which the input comes in(string or list of list), and then works with it accordingly.
+   if type(state) == str:
+       state = eval(state)
+   elif type(state) == list:
+       pass
+   flat_statelist = [item for sublist in state for item in sublist]
+   flat_goallist = range(0, len(flat_statelist))
+   mydistance = 0
+
+   #It checks for two tiles whether or not they are in the same row in the goal state, and the present state, and
+   # adds 2 to the manhattan distance if they are across each other as they would have been in the goal state
+   for i in range(len(state[0])):
+       for j in state[i]:
+           for k in state[i]:
+               if j and k in goalstate(state)[i] and (flat_goallist.index(j) - flat_statelist.index(j) > 0 and flat_goallist.index(k) - flat_statelist.index(k) < 0) or (flat_goallist.index(j) - flat_statelist.index(j) < 0 and flat_goallist.index(k) - flat_statelist.index(k) > 0):
+                   mydistance += 2
+   return mydistance/2 + Manhattan_heuristic(state)
 
 
-# Example usage
-puzzle = [[1, 2, 3],
-          [4, 0, 6],
-          [7, 5, 8]]
-goal = [[1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 0]]
-print(a_star(puzzle, goal))
-        
+#Creating list heuristics which is a pointer to both heuristics created
+heuristics = [place_heuristic, Manhattan_heuristic, myheuristic]
+
+def goalstate(state):
+   flat_statelist = [item for sublist in state for item in sublist]
+   flat_goallist = range(0, len(flat_statelist))
+   goal = []
+   glstcounter = 0
+   for j in range(len(state[0])):
+       goal.append(range(glstcounter, glstcounter + len(state[0])))
+       glstcounter += len(state[0])
+   return goal
+
+def moves(inputs, n):
+   #Move generator, takes in a state and the different possible next moves
+
+   storage  =  []
+   inputs = str(inputs)
+   move = eval(inputs)
+
+   i = 0
+   while 0 not in move[i]: i += 1
+   j = move[i].index(0);  # blank space (zero)
+
+   # Sets boundary for the topmost cells. Allows for downward movement of adjacent cells if they aren't at the topmost edge.
+   if i > 0:
+       move[i][j], move[i - 1][j] = move[i - 1][j], move[i][j];
+       storage.append(str(move))
+       move[i][j], move[i - 1][j] = move[i - 1][j], move[i][j];
+
+   # Sets boundary for the bottommost cells. Allows for upward movement of adjacent cells if they aren't at the bottommost edge.
+   if i < n-1:
+       move[i][j], move[i + 1][j] = move[i + 1][j], move[i][j]
+       storage.append(str(move))
+       move[i][j], move[i + 1][j] = move[i + 1][j], move[i][j]
+
+   # Sets boundary for the rightmost cells. Allows for upward movement of adjacent cells if they aren't at the rightmost edge.
+   if j > 0:
+       move[i][j], move[i][j - 1] = move[i][j - 1], move[i][j]
+       storage.append(str(move))
+       move[i][j], move[i][j - 1] = move[i][j - 1], move[i][j]
+
+   # Sets boundary for the leftmost cells. Allows for upward movement of adjacent cells if they aren't at the leftmost edge.
+   if j < n-1:
+       move[i][j], move[i][j + 1] = move[i][j + 1], move[i][j]
+       storage.append(str(move))
+       move[i][j], move[i][j + 1] = move[i][j + 1], move[i][j]
+
+   return storage
+
+def Astar(start, finish, heuristic):
+   #The A star part of the algorithm
+   n = len(start)
+   start , finish = str(start), str(finish)
+   pathstorage = [[heuristic(start), start]]  # optional: heuristic_1
+   expanded = []
+   expanded_nodes = 0
+   while pathstorage:
+       i = 0
+       for j in range(1, len(pathstorage)):
+           if pathstorage[i][0] > pathstorage[j][0]:
+               i = j
+       path = pathstorage[i]
+       pathstorage = pathstorage[:i] + pathstorage[i + 1:]
+       finishnode = path[-1]
+       if finishnode == finish:
+           break
+       if finishnode in expanded: continue
+       for b in moves(finishnode, n):
+           if b in expanded: continue
+           newpath = [path[0] + heuristic(b) - heuristic(finishnode)] + path[1:] + [b]
+           pathstorage.append(newpath)
+           expanded.append(finishnode)
+       expanded_nodes += 1
+   return expanded_nodes,  len(path), path
+
+
+def solvePuzzle(n, state, heuristic, prnt):
+   flat_statelist = [item for sublist in state for item in sublist]
+   flat_goallist = range(0, len(flat_statelist))
+   #Part that returns the error code -1
+   #It checks if the length of the input is a perfect square, and then if all the leements int
+   #  he goal state is in the start sstate.
+   if len(flat_statelist) != n**2:
+       steps, frontierSize, err = 0, 0, -1
+   elif True in [i not in flat_statelist for i in range(0,n**2-1)]:
+       steps, frontierSize, err = 0, 0, -1
+   else:
+       steps, frontierSize, solutions = Astar(state,goalstate(state), heuristic)
+       err = 0
+
+   #Prints the solutions if the prnt = True
+   if prnt == True:
+       for i in solutions[1:]:
+           t = PuzzleNode(n, eval(i))
+           t.__str__(i)
+           print ("The next step is :")
+
+
+   return "The frontier size, number of steps and error code are :" , steps, frontierSize, err,
+
+puzzle =  [[7,0,8],[4,6,1],[5,3,2]]
+print (solvePuzzle(3, puzzle, heuristics[2], True))
