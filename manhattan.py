@@ -1,7 +1,3 @@
-
-puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
-goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
-
 # Write a script that prints out the steps required to solve the puzzle
 # using the A* search algorithm and the Manhattan distance heuristic.
 # Your output should be a list of lists, where each inner list is a state of the puzzle. 
@@ -65,6 +61,8 @@ def print_puzzle(puzzle, goal):
         for row in puzzle:
             print(row)
         print("_____")
-    
+
+puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
+goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
     
 print_puzzle(puzzle, goal)
