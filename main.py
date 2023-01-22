@@ -85,7 +85,9 @@ def a_star(puzzle, goal):
             heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
 
 # Example usage
-puzzle = [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
+puzzle = [[1, 2, 3],
+          [4, 0, 6],
+          [7, 5, 8]]
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 print(a_star(puzzle, goal))
         
