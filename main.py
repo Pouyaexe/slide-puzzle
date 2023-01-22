@@ -56,6 +56,9 @@ def a_star(puzzle, goal):
             continue
         # Mark the current state as visited
         visited.add(str(current_puzzle))
+        # Print the current state of the puzzle
+        for row in current_puzzle:
+            print(row)
         # Find the coordinates of the blank space
         blank = find_blank(current_puzzle)
         # Generate the possible next states
@@ -64,9 +67,20 @@ def a_star(puzzle, goal):
             next_moves = moves + [move]
             # Calculate the heuristic value
             h = manhattan_distance(next_puzzle, goal)
+            # Print the arrow for the next move
+            if move == 'up':
+                print("↑")
+            elif move == 'down':
+                print("↓")
+            elif move == 'left':
+                print("←")
+            elif move == 'right':
+                print("→")
             # Add the next state to the heap with f(n) = g(n) + h(n)
             heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
 
+# Example usage
+puzzle = [[1, 2, 3], [4, 0, 6], [7
         
 # Example usage
 puzzle = [[1, 2, 3],
