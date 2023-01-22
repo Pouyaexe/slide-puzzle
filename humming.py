@@ -28,12 +28,13 @@ def move(puzzle, neighbor):
     new_puzzle[neighbor[0]][neighbor[1]] = 0
     return new_puzzle
 
-def manhattan_distance(puzzle):
+def humming_distance(puzzle):
     distance = 0
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] != 0:
-                distance += abs(i - (puzzle[i][j] - 1) // 3) + abs(j - (puzzle[i][j] - 1) % 3)
+                if i != (puzzle[i][j] - 1) // 3 or j != (puzzle[i][j] - 1) % 3:
+                    distance += 1
     return distance
 
 def a_star_search(puzzle, goal):
@@ -41,7 +42,7 @@ def a_star_search(puzzle, goal):
     frontier.append(puzzle)
     explored = []
     while len(frontier) > 0:
-        frontier.sort(key = lambda x: manhattan_distance(x))
+        frontier.sort(key = lambda x: humming_distance(x))
         current = frontier.pop(0)
         explored.append(current)
         if current == goal:
@@ -63,3 +64,5 @@ def print_puzzle(puzzle, goal):
 
 puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+
+print_puzzle(puzzle, goal)
