@@ -67,6 +67,7 @@ def print_puzzle(puzzle, goal):
         print("Step", i)
         for j in range(len(puzzles[i])):
             print(" ".join([str(x).rjust(width) for x in puzzles[i][j]]))
+        print("----")
         print()
         
 
