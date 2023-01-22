@@ -177,5 +177,5 @@ def solvePuzzle(n, state, heuristic, prnt):
 
    return "The frontier size, number of steps and error code are :" , steps, frontierSize, err,
 
-puzzle =  [[7,0,8],[4,6,1],[5,3,2]]
+puzzle =  [[1, 2, 3], [4, 5, 6], [7, 0, 8]]
 print (solvePuzzle(3, puzzle, heuristics[2], True))
