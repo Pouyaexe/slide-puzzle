@@ -70,13 +70,22 @@ def a_star(puzzle, goal):
             # Append the move to the list of moves
             next_moves = moves + [move]
             # Print the tile number and arrow for the next move
-        
-# Example usage
-puzzle = [[1, 2, 3],
-          [4, 0, 6], 
-          [7, 5, 8]]
+            print(f"{blank_num}-{move}")
+            if move == 'up':
+                print("↑")
+            elif move == 'down':
+                print("↓")
+            elif move == 'left':
+                print("←")
+            elif move == 'right':
+                print("→")
+            # Calculate the heuristic value
+            h = manhattan_distance(next_puzzle, goal)
+            # Add the next state to the heap with f(n) = g(n) + h(n)
+            heapq.heappush(heap, (len(next_moves) + h, next_puzzle, next_moves))
 
-goal = [[1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 0]]
+# Example usage
+puzzle = [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
+goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 print(a_star(puzzle, goal))
+        
