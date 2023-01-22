@@ -70,10 +70,10 @@ def print_puzzle(puzzle, goal):
         print()
         
 
-# puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
-# goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
+puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
+goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
     
-# print_puzzle(puzzle, goal)
+print_puzzle(puzzle, goal)
 
 # let's try a harder puzzle
 # puzzle = [[1, 2, 3], [4, 6, 0], [7, 5, 8]]
@@ -82,4 +82,7 @@ def print_puzzle(puzzle, goal):
 # print_puzzle(puzzle, goal)
 
 # let's try a 4* 4easy puzzle(just one step)
-puzzle 
+puzzle = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 0, 15]]
+goal = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]]
+
+print_puzzle(puzzle, goal)
