@@ -1,3 +1,4 @@
+# App for solving the 8-puzzle problem using A* search and humming distance heuristic.
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
