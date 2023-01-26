@@ -71,6 +71,9 @@ def a_star_search_set(puzzle, goal):
         if state == goal:
             return explored + [state] # + state to include the goal state
         explored.add(state)
+        print("Explored: ", state)
+        print("Frontier: ", frontier)
+        print("Explored: ", explored)
         for neighbor in get_neighbors(state):
             new_state = move(state, neighbor)
             if new_state not in explored and new_state not in frontier:
