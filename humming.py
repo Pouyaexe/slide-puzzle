@@ -25,7 +25,7 @@ def get_neighbors(puzzle):
     """
     neighbors = []
     zero = get_zero(puzzle)
-    if zero[0] > 0: 
+    if zero[0] > 0: # if zero is not in the first row because we can't move up
         neighbors.append([zero[0] - 1, zero[1]])
     if zero[0] < len(puzzle) - 1:
         neighbors.append([zero[0] + 1, zero[1]])
