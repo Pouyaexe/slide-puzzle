@@ -45,7 +45,7 @@ def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of
 def a_star_search(puzzle, goal):
     "Using heapq to implement priority queue for A* search"
     frontier = []
-    heapq.heappush(frontier, (manhattan_distance(puzzle), puzzle)) # heapq
+    heapq.heappush(frontier, (manhattan_distance(puzzle), puzzle)) # heapq.heappush(heap, item) pushes the value item onto the heap, maintaining the heap invariant. 
     explored = []
     while len(frontier) > 0:
         state = heapq.heappop(frontier)[1]
