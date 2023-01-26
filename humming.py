@@ -29,21 +29,21 @@ def get_neighbors(puzzle):
         neighbors.append([zero[0] - 1, zero[1]])
     if zero[0] < len(puzzle) - 1:
         neighbors.append([zero[0] + 1, zero[1]])
-    if zero[1] > 0:
+    if zero[1] > 0: # if zero is not in the first column because we can't move left
         neighbors.append([zero[0], zero[1] - 1])
     if zero[1] < len(puzzle[0]) - 1:
         neighbors.append([zero[0], zero[1] + 1])
     return neighbors
 
 
-def move(puzzle, neighbor):
+def move(puzzle, neighbor): # move the zero to the neighbor position and return the new puzzle (sliding the zero)
     new_puzzle = [row[:] for row in puzzle]
     zero = get_zero(new_puzzle)
     new_puzzle[zero[0]][zero[1]] = new_puzzle[neighbor[0]][neighbor[1]]
     new_puzzle[neighbor[0]][neighbor[1]] = 0
     return new_puzzle
 
-def hammingDistance( puzle, goal):
+def hammingDistance( puzle, goal): # calculate the number of tiles that are not in the right position (hamming distance): h(n)= number of misplaced tiles
     ans = 0
     for i in range(len(puzle)):
         for j in range(len(puzle[0])):
