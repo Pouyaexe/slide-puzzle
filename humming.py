@@ -1,5 +1,6 @@
 # App for solving the 8-puzzle problem using A* search and humming distance heuristic.
 
+# get_zero(puzzle) returns the position of the zero in the puzzle.
 def get_zero(puzzle):
     """Get the position of the zero in the puzzle.
 
