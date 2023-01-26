@@ -47,7 +47,7 @@ def hammingDistance( puzle, goal): # calculate the number of tiles that are not 
     ans = 0
     for i in range(len(puzle)):
         for j in range(len(puzle[0])):
-            if puzle[i][j] != goal[i][j]:
+            if puzle[i][j] != goal[i][j]: # if the tile is not in the right position (not equal to the goal)
                 ans += 1
     return ans           
 
