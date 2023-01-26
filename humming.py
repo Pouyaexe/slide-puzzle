@@ -1,6 +1,5 @@
 # App for solving the 8-puzzle problem using A* search and humming distance heuristic.
 
-# get_zero(puzzle) returns the position of the zero in the puzzle.
 def get_zero(puzzle):
     """Get the position of the zero in the puzzle.
 
@@ -15,8 +14,15 @@ def get_zero(puzzle):
             if puzzle[i][j] == 0:
                 return [i, j]
 
-
+# get the neighbors of the zero (up, down, left, right)
 def get_neighbors(puzzle):
+    """Get the neighbors of the zero in the puzzle.
+    Args:
+        puzzle: the puzzle to be solved
+        
+    Returns:
+        a list of lists of two integers, the row and column of the neighbors
+    """
     neighbors = []
     zero = get_zero(puzzle)
     if zero[0] > 0:
