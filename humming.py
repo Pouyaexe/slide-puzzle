@@ -57,7 +57,6 @@ def a_star_search(puzzle, goal):
     explored = []
     while len(frontier) > 0:
         frontier.sort(key = lambda x: hammingDistance(x, goal)) # sort the frontier by the hamming distance. The puzzle with the lowest hamming distance will be the first in the frontier
-        # key = 
         current = frontier.pop(0)
         explored.append(current)
         if current == goal:
