@@ -63,7 +63,8 @@ def a_star_search(puzzle, goal):
 def a_star_search_set(puzzle, goal):
     "Using set to implement priority queue for A* search which is faster than heapq O(logn) vs O(nlogn)"
     frontier = set()
-    frontier.add((manhattan_distance(puzzle), puzzle))
+    # frontier.add((manhattan_distance(puzzle), puzzle)) not work since set is unhashable so we need to use tuple instead
+    frontier.add((manhattan_distance(puzzle), tuple([tuple(x) for x in puzzle]))) # tuple([tuple(x) for x in puzzle]) is to convert the list of list to tuple of tuple
     explored = set()
     while len(frontier) > 0:
         state = min(frontier)[1]
