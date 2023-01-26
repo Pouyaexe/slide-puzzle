@@ -31,7 +31,7 @@ def move(puzzle, neighbor):
     new_puzzle[neighbor[0]][neighbor[1]] = 0
     return new_puzzle
 
-def manhattan_distance(puzzle):
+def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of the distances of the tiles from their goal positions
     distance = 0
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
