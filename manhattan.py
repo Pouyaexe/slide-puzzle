@@ -3,6 +3,7 @@
 # Your output should be a list of lists, where each inner list is a state of the puzzle.
 # We will use hip in this example, but you can use any other heuristic function. 
 
+
 import heapq # for priority queue implementation we use
 
 def get_zero(puzzle):
