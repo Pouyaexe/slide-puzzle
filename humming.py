@@ -54,11 +54,11 @@ def hammingDistance(puzle, goal): # calculate the number of tiles that are not i
 
 def a_star_search(puzzle, goal): # A* search algorithm 
     frontier = [] 
-    print(frontier)
     frontier.append(puzzle)
     explored = []
     while len(frontier) > 0:
         frontier.sort(key = lambda x: hammingDistance(x, goal)) # sort the frontier by the hamming distance. The puzzle with the lowest hamming distance will be the first in the frontier
+        print(frontier)
         current = frontier.pop(0) # 
         explored.append(current)
         if current == goal:
