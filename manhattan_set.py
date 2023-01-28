@@ -1,17 +1,18 @@
-
 # Write a script that prints out the steps required to solve the puzzle
 # using the A* search algorithm and the Manhattan distance heuristic.
 # Your output should be a list of lists, where each inner list is a state of the puzzle.
-# We will use hip in this example, but you can use any other heuristic function. 
+# We will use hip in this example, but you can use any other heuristic function.
 
 
-import heapq # for priority queue implementation we use
+import heapq  # for priority queue implementation we use
+
 
 def get_zero(puzzle):
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] == 0:
                 return [i, j]
+
 
 def get_neighbors(puzzle):
     neighbors = []
@@ -26,6 +27,7 @@ def get_neighbors(puzzle):
         neighbors.append([zero[0], zero[1] + 1])
     return neighbors
 
+
 def move(puzzle, neighbor):
     new_puzzle = [row[:] for row in puzzle]
     zero = get_zero(new_puzzle)
@@ -33,14 +35,18 @@ def move(puzzle, neighbor):
     new_puzzle[neighbor[0]][neighbor[1]] = 0
     return new_puzzle
 
-def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of the distances of the tiles from their goal positions
+
+def manhattan_distance(
+    puzzle,
+):  # calculate the manhattan distance: h(n)= sum of the distances of the tiles from their goal positions
     distance = 0
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] != 0:
-                distance += abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(j - (puzzle[i][j] - 1) % len(puzzle[0]))
+                distance += abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(
+                    j - (puzzle[i][j] - 1) % len(puzzle[0])
+                )
     return distance
-
 
 
 def a_star_search(puzzle, goal):
@@ -70,13 +76,13 @@ def print_puzzle(puzzle, goal):
         print("Step", i)
         for j in range(len(puzzles[i])):
             print(" ".join([str(x).rjust(width) for x in puzzles[i][j]]))
-        print("_"*len(" ".join([str(x).rjust(width) for x in puzzles[i][j]])))
+        print("_" * len(" ".join([str(x).rjust(width) for x in puzzles[i][j]])))
         print()
-        
 
-puzzle =  [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
+
+puzzle = [[1, 2, 3], [4, 0, 6], [7, 5, 8]]
 goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
-    
+
 print_puzzle(puzzle, goal)
 
 # let's try a harder puzzle
@@ -88,7 +94,3 @@ print_puzzle(puzzle, goal)
 # let's try a 4* 4easy puzzle(just one step)
 puzzle = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 0, 15]]
 goal = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]]
-
-
-
-
