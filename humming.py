@@ -44,7 +44,7 @@ def move(puzzle, neighbor): # move the zero to the neighbor position and return 
     new_puzzle[neighbor[0]][neighbor[1]] = 0
     return new_puzzle
 
-def hammingDistance( puzle, goal): # calculate the number of tiles that are not in the right position (hamming distance): h(n)= number of misplaced tiles
+def hammingDistance(puzle, goal): # calculate the number of tiles that are not in the right position (hamming distance): h(n)= number of misplaced tiles
     ans = 0
     for i in range(len(puzle)):
         for j in range(len(puzle[0])):
