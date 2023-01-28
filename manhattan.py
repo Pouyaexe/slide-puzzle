@@ -60,27 +60,6 @@ def a_star_search(puzzle, goal):
                 heapq.heappush(frontier, (manhattan_distance(new_state), new_state))
     return explored
 
-def a_star_search_set(puzzle, goal):
-    "Using set to implement priority queue for A* search which is faster than heapq O(logn) vs O(nlogn)"
-    frontier = set()
-    # frontier.add((manhattan_distance(puzzle), puzzle)) not work since set is unhashable so we need to use tuple instead
-    frontier.add((manhattan_distance(puzzle), tuple([tuple(x) for x in puzzle]))) # tuple([tuple(x) for x in puzzle]) is to convert the list of list to tuple of tuple
-    explored = set()
-    while len(frontier) > 0:
-        state = min(frontier)[1]
-        frontier.remove(min(frontier))
-        if state == goal:
-            return explored + [state] # + state to include the goal state
-        explored.add(state)
-        print("Explored: ", state)
-        print("Frontier: ", frontier)
-        print("Explored: ", explored)
-        for neighbor in get_neighbors(state):
-            new_state = move(state, neighbor)
-            if new_state not in explored and new_state not in frontier:
-                frontier.add((manhattan_distance(new_state), new_state))
-    return explored
-
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
