@@ -44,21 +44,20 @@ def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of
 
 
 def a_star_search(puzzle, goal):
-    "Using set to implement priority queue for A* search"
     frontier = set()
     puzzle = tuple(puzzle)
     frontier.add(puzzle)
     explored = set()
-    explored = set()
     while len(frontier) > 0:
         state = frontier.pop()
-        if state == goal:
-            return explored.union(state)
-        explored.add(state)
+        if tuple(state) == goal:
+            return explored + [state]
+        explored.add(tuple(state))
         for neighbor in get_neighbors(state):
             new_state = move(state, neighbor)
             if tuple(new_state) not in explored and new_state not in frontier:
-                frontier.add(new_state)
+                frontier.add(tuple(new_state))
+                heapq.heappush(frontier, (manhattan_distance(new_state), new_state))
     return explored
 
 
