@@ -39,7 +39,6 @@ def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of
             if puzzle[i][j] != 0: #abs means 
                 distance += abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(j - (puzzle[i][j] - 1) % len(puzzle[0]))
     return distance
-# kam
 
 
 def a_star_search(puzzle, goal):
