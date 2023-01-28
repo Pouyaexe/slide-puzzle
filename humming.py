@@ -61,6 +61,7 @@ def a_star_search(puzzle, goal): # A* search algorithm
         print(frontier, "\n")
         current = frontier.pop(0) #
         explored.append(current) 
+        print(explored, "explored")
         if current == goal:
             return explored
         neighbors = get_neighbors(current)
