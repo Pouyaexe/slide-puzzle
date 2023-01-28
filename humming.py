@@ -13,6 +13,7 @@ def get_zero(puzzle):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] == 0:
                 return [i, j]
+            
 
 # get the neighbors of the zero (up, down, left, right)
 def get_neighbors(puzzle):
