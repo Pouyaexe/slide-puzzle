@@ -57,7 +57,7 @@ def a_star_search(puzzle, goal):
         explored.add(state)
         for neighbor in get_neighbors(state):
             new_state = move(state, neighbor)
-            if new_state not in explored and new_state not in frontier:
+            if tuple(new_state) not in explored and new_state not in frontier:
                 frontier.add(new_state)
     return explored
 
