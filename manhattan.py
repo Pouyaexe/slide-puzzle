@@ -36,7 +36,7 @@ def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of
     distance = 0
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
-            if puzzle[i][j] != 0:
+            if puzzle[i][j] != 0: #abs
                 distance += abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(j - (puzzle[i][j] - 1) % len(puzzle[0]))
     return distance
 
