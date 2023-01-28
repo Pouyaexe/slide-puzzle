@@ -7,7 +7,7 @@ def get_zero(puzzle):
         puzzle: the puzzle to be solved
 
     Returns:
-        a list of list
+        a list of lists
     """
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
