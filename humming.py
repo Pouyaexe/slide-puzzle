@@ -67,7 +67,7 @@ def a_star_search(puzzle, goal): # A* search algorithm
             new_puzzle = move(current, neighbor)
             if new_puzzle not in explored and new_puzzle not in frontier:
                 frontier.append(new_puzzle)
-    return []
+    return [] # 
 
 
 def print_puzzle(puzzle, goal):
