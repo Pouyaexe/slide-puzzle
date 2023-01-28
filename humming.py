@@ -7,7 +7,7 @@ def get_zero(puzzle):
         puzzle: the puzzle to be solved
 
     Returns:
-        a list of two integers, the row and column of the zero
+        a list of list
     """
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
