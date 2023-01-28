@@ -49,6 +49,7 @@ def a_star_search(puzzle, goal):
     frontier = set()
     frontier.add(puzzle)
     explored = set()
+    explored = set()
     while len(frontier) > 0:
         state = frontier.pop()
         if state == goal:
