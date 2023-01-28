@@ -37,7 +37,6 @@ def get_neighbors(puzzle):
         neighbors.append([zero[0], zero[1] + 1])
     return neighbors
 
-
 def move(puzzle, neighbor): # move the zero to the neighbor position and return the new puzzle (sliding the zero)
     new_puzzle = [row[:] for row in puzzle]
     zero = get_zero(new_puzzle)
