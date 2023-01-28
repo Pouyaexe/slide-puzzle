@@ -58,7 +58,7 @@ def a_star_search(puzzle, goal):
             # print(frontier)
             if new_state not in explored and new_state not in [x[1] for x in frontier]:
                 heapq.heappush(frontier, (manhattan_distance(new_state), new_state))
-    return explored
+    return explored 
 
 
 def print_puzzle(puzzle, goal):
