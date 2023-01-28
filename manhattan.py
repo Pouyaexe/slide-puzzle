@@ -35,9 +35,9 @@ def move(puzzle, neighbor):
 def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of the distances of the tiles from their goal positions
     distance = 0
     for i in range(len(puzzle)):
-        for j in range(len(puzzle[0])): #abs means 
-            distance += abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(j - (puzzle[i][j] - 1) % len(puzzle[0]))
-            print(abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(j - (puzzle[i][j] - 1) % len(puzzle[0])), "::", puzzle[i][j] )
+        for j in range(len(puzzle[0])):
+            if puzzle[i][j] != 0: #abs means 
+                distance += abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(j - (puzzle[i][j] - 1) % len(puzzle[0]))
     return distance
 
 
