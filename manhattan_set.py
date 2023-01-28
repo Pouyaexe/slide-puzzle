@@ -51,8 +51,8 @@ def manhattan_distance(
 
 def a_star_search(puzzle, goal):
     frontier = set()
-    puzzle_t = tuple(puzzle)
-    frontier.add(puzzle_t)
+    puzzle = tuple(puzzle)
+    frontier.add(puzzle)
     explored = set()
     while len(frontier) > 0:
         state = frontier.pop()
