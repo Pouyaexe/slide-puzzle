@@ -50,8 +50,8 @@ def a_star_search(puzzle, goal):
         state = heapq.heappop(frontier)[1]
         # or we can  frontier.sort(key = lambda x: hammingDistance(x, goal)) which is the same as heapq but slower since it is O(nlogn) but heapq is O(logn)
         # to improve speed, we can use a set to store explored states
-        if state == goal:
-            return explored + state # + state to include the goal state
+        if state == goal: 
+            return explored + [state] # + state to include the goal state
         explored.append(state)
         for neighbor in get_neighbors(state):
             new_state = move(state, neighbor)
