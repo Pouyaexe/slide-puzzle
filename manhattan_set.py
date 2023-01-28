@@ -44,42 +44,19 @@ def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of
 
 
 def a_star_search(puzzle, goal):
-    "Using heapq to implement priority queue for A* search"
-    frontier = []
-    heapq.heappush(frontier, (manhattan_distance(puzzle), puzzle)) # heapq.heappush(heap, item) pushes the value item onto the heap, maintaining the heap invariant. 
-    explored = []
-    while len(frontier) > 0:
-        state = heapq.heappop(frontier)[1]
-        # or we can  frontier.sort(key = lambda x: hammingDistance(x, goal)) which is the same as heapq but slower since it is O(nlogn) but heapq is O(logn)
-        # to improve speed, we can use a set to store explored states
-        if state == goal:
-            return explored + [state] # + state to include the goal state
-        explored.append(state)
-        for neighbor in get_neighbors(state):
-            new_state = move(state, neighbor)
-            if new_state not in explored and new_state not in [x[1] for x in frontier]:
-                heapq.heappush(frontier, (manhattan_distance(new_state), new_state))
-    return explored
-
-def a_star_search_set(puzzle, goal):
-    "Using set to implement priority queue for A* search which is faster than heapq O(logn) vs O(nlogn)"
+    "Using set to implement priority queue for A* search"
     frontier = set()
-    # frontier.add((manhattan_distance(puzzle), puzzle)) not work since set is unhashable so we need to use tuple instead
-    frontier.add((manhattan_distance(puzzle), tuple([tuple(x) for x in puzzle]))) # tuple([tuple(x) for x in puzzle]) is to convert the list of list to tuple of tuple
+    frontier.add(puzzle)
     explored = set()
     while len(frontier) > 0:
-        state = min(frontier)[1]
-        frontier.remove(min(frontier))
+        state = frontier.pop()
         if state == goal:
-            return explored + [state] # + state to include the goal state
+            return explored.union(state)
         explored.add(state)
-        print("Explored: ", state)
-        print("Frontier: ", frontier)
-        print("Explored: ", explored)
         for neighbor in get_neighbors(state):
             new_state = move(state, neighbor)
             if new_state not in explored and new_state not in frontier:
-                frontier.add((manhattan_distance(new_state), new_state))
+                frontier.add(new_state)
     return explored
 
 
@@ -111,6 +88,6 @@ print_puzzle(puzzle, goal)
 puzzle = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 0, 15]]
 goal = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]]
 
-print_puzzle_set(puzzle, goal)
+
 
 
