@@ -45,6 +45,7 @@ def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of
 
 def a_star_search(puzzle, goal):
     "Using set to implement priority queue for A* search"
+    puzzle = tuple(puzzle)
     frontier = set()
     frontier.add(puzzle)
     explored = set()
