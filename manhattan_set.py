@@ -12,7 +12,7 @@ def get_zero(puzzle):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] == 0:
                 return [i, j]
-
+#  hh 
 
 def get_neighbors(puzzle):
     neighbors = []
@@ -90,6 +90,7 @@ print_puzzle(puzzle, goal)
 # goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
 # print_puzzle(puzzle, goal)
+# test 4*4 puzzle 
 
 # let's try a 4* 4easy puzzle(just one step)
 puzzle = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 0, 15]]
