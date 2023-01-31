@@ -62,7 +62,7 @@ def a_star_search(puzzle, goal): # A* search algorithm
         # print(current, "current")
         # print(explored, "explored")
         if current == goal:
-            return current
+            return explored
         neighbors = get_neighbors(current)
         for neighbor in neighbors:
             new_puzzle = move(current, neighbor)
@@ -71,22 +71,16 @@ def a_star_search(puzzle, goal): # A* search algorithm
     return None
 
 def print_puzzle(puzzle, goal):
-    """Print the puzzle and the steps to solve it.
-    Args:
-        puzzle: the puzzle to be solved
-        goal: the goal state of the puzzle
-    """
-    print("Puzzle:")
-    for row in puzzle:
-        print(row)
-    print("Goal:")
-    for row in goal:
-        print(row)
-    print("Steps:")
-    steps = a_star_search(puzzle, goal)
-    for step in steps:
-        print(step)
-    print("")
+    puzzles = a_star_search(puzzle, goal)
+    print("Hamming Distance:", hammingDistance(puzzle, goal))
+    # if size=len(puzzle)^2 > 9, we need to adjust the width of the output
+    width = len(str(len(puzzle) ** 2))
+    for i in range(len(puzzles)):
+        print("Step", i)
+        for j in range(len(puzzles[i])):
+            print(" ".join([str(x).rjust(width) for x in puzzles[i][j]]))
+        print("_"*len(" ".join([str(x).rjust(width) for x in puzzles[i][j]])))
+        print()
         
 
 
