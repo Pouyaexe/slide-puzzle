@@ -79,6 +79,7 @@ def  hamming_distance_hash_table(puzzle, goal):
 
  
 def hash_puzzle(puzzle):
+    # 
     return hashlib.sha256(str(puzzle).encode()).hexdigest() 
  
 def a_star_search_hash_table(puzzle, goal):
