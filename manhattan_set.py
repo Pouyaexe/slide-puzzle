@@ -110,7 +110,7 @@ def print_puzzle(puzzle, goal):
             for num in row:
                 print(str(num).rjust(width), end = " ")
             print()
-        print()
+        print("-" * (width +1) * len(puzzle[0]))
         
 
 
