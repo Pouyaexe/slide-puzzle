@@ -35,6 +35,26 @@ def get_neighbors(puzzle):
         neighbors.append([zero[0], zero[1] + 1])
     return neighbors
 
+def get_neighbors_hash_table(puzzle):
+    """Get the neighbors of the zero in the puzzle.
+    Args:
+    puzzle: the puzzle to be solved
+    Returns:
+    a list of lists of two integers, the row and column of the neighbors
+    """
+    neighbors = []
+    zero = get_zero(puzzle)
+    if zero[0] > 0:
+        neighbors.append([zero[0] - 1, zero[1]])
+    if zero[0] < len(puzzle) - 1:
+        neighbors.append([zero[0] + 1, zero[1]])
+    if zero[1] > 0:
+        neighbors.append([zero[0], zero[1] - 1])
+    if zero[1] < len(puzzle[0]) - 1:
+        neighbors.append([zero[0], zero[1] + 1])
+    return neighbors
+
+
 def move(puzzle, neighbor): # move the zero to the neighbor position and return the new puzzle (sliding the zero)
     new_puzzle = [row[:] for row in puzzle]
     zero = get_zero(new_puzzle)
