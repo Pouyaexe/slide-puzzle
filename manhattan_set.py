@@ -1,4 +1,4 @@
-
+import hashlib
 
 def get_zero(puzzle):
     """Get the position of the zero in the puzzle.
@@ -48,7 +48,22 @@ def hammingDistance(puzle, goal): # calculate the number of tiles that are not i
         for j in range(len(puzle[0])):
             if puzle[i][j] != goal[i][j]: # if the tile is not in the right position (not equal to the goal)
                 ans += 1
-    return ans           
+    return ans  
+
+def  hamming_distance_hash_table(puzzle, goal):
+    # create a hash table for the goal puzzle
+    hash_table = {}
+    for i in range(len(goal)):
+        for j in range(len(goal[0])):
+            hash_table[goal[i][j]] = [i, j]
+    # calculate the hamming distance
+    ans = 0
+    for i in range(len(puzzle)):
+        for j in range(len(puzzle[0])):
+            if puzzle[i][j] != 0:
+                if hash_table[puzzle[i][j]] != [i, j]:
+                    ans += 1
+    return ans     
 
 def a_star_search(puzzle, goal): # A* search algorithm using data
     frontier = [] 
@@ -69,8 +84,29 @@ def a_star_search(puzzle, goal): # A* search algorithm using data
             if new_puzzle not in explored:
                 frontier.append(new_puzzle) # add the new puzzle to the frontier
     return None
-
-
+ 
+def hash_puzzle(puzzle):
+    return hashlib.sha256(str(puzzle).encode()).hexdigest() 
+ 
+def a_star_search_hash_table(puzzle, goal):
+    frontier = []
+    frontier.append(puzzle)
+    explored = {}
+    while len(frontier) > 0:
+        frontier.sort(key = lambda x: hamming_distance_hash_table(x, goal))
+        current = frontier.pop(0)
+        puzzle_hash = hash_puzzle(current)
+        if puzzle_hash in explored:
+            continue
+        explored[puzzle_hash] = current
+        if current == goal:
+            return explored
+        neighbors = get_neighbors(current)
+        for neighbor in neighbors:
+            new_puzzle = move(current, neighbor)
+            if hash_puzzle(new_puzzle) not in explored and new_puzzle not in frontier:
+                frontier.append(new_puzzle)
+    return None
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
