@@ -50,7 +50,7 @@ def hammingDistance(puzle, goal): # calculate the number of tiles that are not i
                 ans += 1
     return ans           
 
-def a_star_search(puzzle, goal): # A* search algorithm 
+def a_star_search(puzzle, goal): # A* search algorithm using data
     frontier = [] 
     frontier.append(puzzle)
     explored = []
@@ -69,6 +69,8 @@ def a_star_search(puzzle, goal): # A* search algorithm
             if new_puzzle not in explored:
                 frontier.append(new_puzzle) # add the new puzzle to the frontier
     return None
+
+
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search(puzzle, goal)
