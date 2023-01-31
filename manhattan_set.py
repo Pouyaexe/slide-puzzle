@@ -85,7 +85,7 @@ def a_star_search_hash_table(puzzle, goal):
     frontier.append(puzzle)
     explored = {}
     while len(frontier) > 0:
-        frontier.sort(key = lambda x: hamming_distance_hash_table(x, goal))
+        frontier.sort(key = lambda x: manhattan_distance_hash_table(x, goal))
         current = frontier.pop(0)
         puzzle_hash = hash_puzzle(current)
         if puzzle_hash in explored:
@@ -102,7 +102,7 @@ def a_star_search_hash_table(puzzle, goal):
 
 def print_puzzle(puzzle, goal):
     puzzles = a_star_search_hash_table(puzzle, goal)
-    print("Hamming Distance:", hamming_distance_hash_table(puzzle, goal))
+    print("Manhattan Distance:", manhattan_distance_hash_table(puzzle, goal))
     # if size=len(puzzle)^2 > 9, we need to adjust the width of the output
     width = len(str(len(puzzle) ** 2))
     for puzzle_hash in puzzles:
