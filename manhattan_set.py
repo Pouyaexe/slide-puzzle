@@ -62,14 +62,6 @@ def move(puzzle, neighbor): # move the zero to the neighbor position and return 
     new_puzzle[neighbor[0]][neighbor[1]] = 0
     return new_puzzle
 
-def hammingDistance(puzle, goal): # calculate the number of tiles that are not in the right position (hamming distance): h(n)= number of misplaced tiles
-    ans = 0
-    for i in range(len(puzle)):
-        for j in range(len(puzle[0])):
-            if puzle[i][j] != goal[i][j]: # if the tile is not in the right position (not equal to the goal)
-                ans += 1
-    return ans  
-
 def  hamming_distance_hash_table(puzzle, goal):
     # create a hash table for the goal puzzle
     hash_table = {}
@@ -85,25 +77,6 @@ def  hamming_distance_hash_table(puzzle, goal):
                     ans += 1
     return ans     
 
-def a_star_search(puzzle, goal): # A* search algorithm using data
-    frontier = [] 
-    frontier.append(puzzle)
-    explored = []
-    while len(frontier) > 0:
-        frontier.sort(key = lambda x: hammingDistance(x, goal)) # sort the frontier by the hamming distance. The puzzle with the lowest hamming distance will be the first in the frontier
-        # print(frontier[0], "\n")
-        current = frontier.pop(0) #
-        explored.append(current) 
-        # print(current, "current")
-        # print(explored, "explored")
-        if current == goal:
-            return explored
-        neighbors = get_neighbors(current)
-        for neighbor in neighbors:
-            new_puzzle = move(current, neighbor)
-            if new_puzzle not in explored:
-                frontier.append(new_puzzle) # add the new puzzle to the frontier
-    return None
  
 def hash_puzzle(puzzle):
     return hashlib.sha256(str(puzzle).encode()).hexdigest() 
@@ -129,15 +102,15 @@ def a_star_search_hash_table(puzzle, goal):
     return None
 
 def print_puzzle(puzzle, goal):
-    puzzles = a_star_search(puzzle, goal)
-    print("Hamming Distance:", hammingDistance(puzzle, goal))
+    puzzles = a_star_search_hash_table(puzzle, goal)
+    print("Hamming Distance:", hamming_distance_hash_table(puzzle, goal))
     # if size=len(puzzle)^2 > 9, we need to adjust the width of the output
     width = len(str(len(puzzle) ** 2))
-    for i in range(len(puzzles)):
-        print("Step", i)
-        for j in range(len(puzzles[i])):
-            print(" ".join([str(x).rjust(width) for x in puzzles[i][j]]))
-        print("_"*len(" ".join([str(x).rjust(width) for x in puzzles[i][j]])))
+    for puzzle_hash in puzzles:
+        for row in puzzles[puzzle_hash]:
+            for num in row:
+                print(str(num).rjust(width), end = " ")
+            print()
         print()
         
 
