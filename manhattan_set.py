@@ -62,24 +62,22 @@ def move(puzzle, neighbor): # move the zero to the neighbor position and return 
     new_puzzle[neighbor[0]][neighbor[1]] = 0
     return new_puzzle
 
-def  hamming_distance_hash_table(puzzle, goal):
+def manhattan_distance_hash_table(puzzle, goal):
     # create a hash table for the goal puzzle
     hash_table = {}
     for i in range(len(goal)):
         for j in range(len(goal[0])):
             hash_table[goal[i][j]] = [i, j]
-    # calculate the hamming distance
+    # calculate the manhattan distance
     ans = 0
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] != 0:
-                if hash_table[puzzle[i][j]] != [i, j]:
-                    ans += 1
-    return ans     
-
+                ans += abs(hash_table[puzzle[i][j]][0] - i) + abs(hash_table[puzzle[i][j]][1] - j)
+    return ans
  
 def hash_puzzle(puzzle):
-    # 
+    # convert the puzzle to a string and hash it using sha256
     return hashlib.sha256(str(puzzle).encode()).hexdigest() 
  
 def a_star_search_hash_table(puzzle, goal):
