@@ -69,7 +69,7 @@ def print_puzzle(puzzle, goal):
     for i in range(len(puzzles)):
         print("Step", i)
         for j in range(len(puzzles[i])):
-            print(" ".join([str(x).rjust(width) for x in puzzles[i][j]]))
+            print(" ".join([str(x).rjust(width) for x in puzzles[i][j]])) # jion 
         print("_"*len(" ".join([str(x).rjust(width) for x in puzzles[i][j]])))
         print()
         
