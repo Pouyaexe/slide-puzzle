@@ -79,6 +79,7 @@ def manhattan_distance_hash_table(puzzle, goal):
 def hash_puzzle(puzzle):
     # convert the puzzle to a string and hash it using sha256 
     return hashlib.sha256(str(puzzle).encode()).hexdigest() 
+
  
 def a_star_search_hash_table(puzzle, goal):
     frontier = []
