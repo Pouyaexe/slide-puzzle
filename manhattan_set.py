@@ -73,7 +73,7 @@ def manhattan_distance_hash_table(puzzle, goal):
     print("hash_table", hash_table)
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
-            if puzzle[i][j] != 0: # becay
+            if puzzle[i][j] != 0: # we don't need to calculate the distance for the zero
                 ans += abs(hash_table[puzzle[i][j]][0] - i) + abs(hash_table[puzzle[i][j]][1] - j) #because puzzle[i][j]][0] is the row and puzzle[i][j]][1] is the column
     return ans
  
