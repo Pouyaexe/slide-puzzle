@@ -91,9 +91,11 @@ def a_star_search_hash_table(puzzle, goal):
         puzzle_hash = hash_puzzle(current)
         if puzzle_hash in explored:
             continue
+        
         print("Exploring:", puzzle_hash) 
         print("_____")
         print("Explored", explored)
+        
         explored[puzzle_hash] = current
         if current == goal:
             return explored
