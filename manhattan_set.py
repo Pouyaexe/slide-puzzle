@@ -67,13 +67,14 @@ def manhattan_distance_hash_table(puzzle, goal):
     hash_table = {}
     for i in range(len(goal)):
         for j in range(len(goal[0])):
-            hash_table[goal[i][j]] = [i, j] # goal = [[1, 2, 3], [4, 5, 6], [7, 8, 0]] hash_table = {1: [0, 0], 2: [0, 1], 3: [0, 2], 4: [1, 0], 5: [1, 1], 6: [1, 2], 7: [2, 0], 8: [2, 1], 0: [2, 2]} so i is the row and j is the column
+            hash_table[goal[i][j]] = [i, j] 
     # calculate the manhattan distance
     ans = 0
+    print("hash_table", hash_table)
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
             if puzzle[i][j] != 0: # becay
-                ans += abs(hash_table[puzzle[i][j]][0] - i) + abs(hash_table[puzzle[i][j]][1] - j)
+                ans += abs(hash_table[puzzle[i][j]][0] - i) + abs(hash_table[puzzle[i][j]][1] - j) #because puzzle[i][j]][0] is the row and puzzle[i][j]][1] is the column
     return ans
  
 def hash_puzzle(puzzle):
