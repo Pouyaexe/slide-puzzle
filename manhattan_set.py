@@ -64,7 +64,7 @@ def move(puzzle, neighbor): # move the zero to the neighbor position and return 
 
 def manhattan_distance_hash_table(puzzle, goal):
     # create a hash table for the goal puzzle
-    hash_table = {}
+    hash_table = {} # key is the number (0-8) and value is the position (row, column) 
     for i in range(len(goal)):
         for j in range(len(goal[0])):
             hash_table[goal[i][j]] = [i, j] 
