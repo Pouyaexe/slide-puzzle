@@ -72,7 +72,7 @@ def manhattan_distance_hash_table(puzzle, goal):
     ans = 0
     for i in range(len(puzzle)):
         for j in range(len(puzzle[0])):
-            if puzzle[i][j] != 0:
+            if puzzle[i][j] != 0: # becay
                 ans += abs(hash_table[puzzle[i][j]][0] - i) + abs(hash_table[puzzle[i][j]][1] - j)
     return ans
  
