@@ -40,7 +40,6 @@ def manhattan_distance(puzzle): # calculate the manhattan distance: h(n)= sum of
                 distance += abs(i - (puzzle[i][j] - 1) // len(puzzle[0])) + abs(j - (puzzle[i][j] - 1) % len(puzzle[0]))
     return distance
 
-
 def a_star_search(puzzle, goal):
     "Using heapq to implement priority queue for A* search"
     frontier = []
