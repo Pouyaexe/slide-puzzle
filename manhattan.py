@@ -12,6 +12,7 @@ def get_zero(puzzle):
             if puzzle[i][j] == 0:
                 return [i, j]
 
+
 def get_neighbors(puzzle):
     neighbors = []
     zero = get_zero(puzzle)
